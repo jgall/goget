@@ -2,14 +2,11 @@ package main
 
 import "github.com/mitchellh/ioprogress"
 import "github.com/docopt/docopt-go"
-import . "github.com/tj/go-debug"
 import "net/http"
 import "strconv"
 import "fmt"
 import "io"
 import "os"
-
-var debug = Debug("goget")
 
 const duration int64 = 1000 * 1000
 

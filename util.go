@@ -105,14 +105,14 @@ func appendFile(filename string, data []byte, offset int64) (int64, error) {
 	defer file.Close()
 
 	if err != nil {
-		debug("file: %v, error: %v", file, err)
+		fmt.Printf("file: %v, error: %v", file, err)
 		return 0, err
 	}
-	debug("append file, data length: %d, offset: %d", len(data), offset)
+	fmt.Printf("append file, data length: %d, offset: %d", len(data), offset)
 	size, err := file.WriteAt(data, offset)
 
 	if err != nil {
-		debug("error: %v", err)
+		fmt.Printf("error: %v", err)
 		return 0, err
 	}
 

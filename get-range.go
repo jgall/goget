@@ -53,7 +53,7 @@ func (r *Range) resume(size int64) (success, finished bool) {
 		end = r.total
 	}
 	if start >= end {
-		debug("total: %d, start: %d, end: %d", r.total, start, end)
+		fmt.Printf("total: %d, start: %d, end: %d", r.total, start, end)
 		return true, true
 	}
 
@@ -63,21 +63,21 @@ func (r *Range) resume(size int64) (success, finished bool) {
 
 	req, err := http.NewRequest("GET", r.uri, nil)
 	if err != nil {
-		debug("http get error: %v", err)
+		fmt.Printf("http get error: %v", err)
 		return false, false
 	}
 	req.Header.Set("Range", rangeString)
 
 	res, err := client.Do(req)
 	if err != nil {
-		debug("client do error: %v", err)
+		fmt.Printf("client do error: %v", err)
 		return false, false
 	}
 	defer res.Body.Close()
 
 	data, err := ioutil.ReadAll(res.Body)
 	if err != nil {
-		debug("read all error: %v", err)
+		fmt.Printf("read all error: %v", err)
 		return false, false
 	}
 	_, err = appendFile(r.filename, data, start)
